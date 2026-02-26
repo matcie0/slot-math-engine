@@ -40,7 +40,7 @@ class SlotEngine:
             
             if is_winner:
                 # Jeśli wygrały same Wildy, wypłać za najwyższy symbol (np. H1)
-                payout_key = "H1" if target == "W" else target
+                payout_key = "W" if target == "W" else target
                 total_payout += SYMBOLS[payout_key]["value"]
                 
         return total_payout
