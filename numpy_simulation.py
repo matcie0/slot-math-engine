@@ -1,5 +1,6 @@
 import numpy as np
 from settings import REELS, PAYLINES, SYMBOLS
+import matplotlib.pyplot as plt
 
 def run_numpy_simulation(spins=1000000):
     sym_to_id = {name: i for i, name in enumerate(SYMBOLS.keys())}
@@ -58,5 +59,25 @@ def run_numpy_simulation(spins=1000000):
     print(f"Standard Deviation: {stdev:.4f}")
     print(f"Volatility Index (95% CI): {volatility_index:.2f}")
 
+
+    # # === WIZUALIZACJA ===
+
+    # cumulative_rtp = np.cumsum(wins_per_spin) / np.arange(1, spins + 1) * 100
+    
+    # step = max(1, spins // 1000)
+    # plt.figure(figsize=(12, 6))
+    # plt.plot(np.arange(1, spins + 1)[::step], cumulative_rtp[::step], label='Bieżące RTP')
+    
+    # plt.axhline(y=rtp, color='r', linestyle='--', label=f'Finalne RTP ({rtp:.2f}%)')
+    
+    # plt.title(f'Zbieżność RTP w czasie (Monte Carlo - {spins} spinów)')
+    # plt.xlabel('Liczba spinów')
+    # plt.ylabel('RTP (%)')
+    # plt.legend()
+    # plt.grid(True, alpha=0.3)
+    
+    # plt.savefig('rtp_convergence.png')
+    # print("Wykres został zapisany jako 'rtp_convergence.png'")
+
 if __name__ == "__main__":
-    run_numpy_simulation(10000000)
+    run_numpy_simulation(1000000)
