@@ -24,17 +24,17 @@ Wykres poniżej udowadnia stabilność modelu matematycznego. Wraz ze wzrostem l
 
 ![RTP Convergence](rtp_convergence.png)
 
-## 🛠 Technologia
+## Technologia
 - **Python 3.x**
 - **NumPy** - macierzowe operacje na danych
 - **Matplotlib** - generowanie wykresów analitycznych
 
-## 📖 Struktura Projektu
+## Struktura Projektu
 - `numpy_simulation.py` - Główny silnik symulacji i moduł wizualizacji.
 - `settings.py` - Definicja bębnów (Reel Strips), linii płatnych (Paylines) oraz tabeli wypłat (Paytable).
 - `rtp_convergence.png` - Wygenerowany wykres stabilności statystycznej.
 
-## 💻 Jak uruchomić
+## Jak uruchomić
 1. Sklonuj repozytorium:
    ```bash
    git clone [https://github.com/TwojUser/slot-math-engine.git](https://github.com/TwojUser/slot-math-engine.git)
