@@ -24,7 +24,7 @@ Wykres poniżej udowadnia stabilność modelu matematycznego. Wraz ze wzrostem l
 
 ![RTP Convergence](rtp_convergence.png)
 
-### Symulacja sesji gracza (Analiza Monte Carlo)
+## Symulacja sesji gracza (Analiza Monte Carlo)
 
 W celu oceny gry z perspektywy użytkownika, przeprowadzono analizę sesji metodą Monte Carlo. Podczas gdy teoretyczne wskaźniki RTP i Volatility Index opisują zachowanie automatu w nieskończonym horyzoncie czasowym, analiza sesji pozwala zrozumieć realne ryzyko utraty kapitału (prawdopodobieństwo bankructwa).
 
@@ -51,6 +51,17 @@ Powyższy wykres prezentuje 50 reprezentatywnych sesji:
 - **Systematyczny spadek** większości linii dokumentuje wpływ "House Edge" oraz kosztu gry, który przy braku trafienia wysokiej wygranej szybko pochłania pieniądze z konta przy tak wysokiej zmienności.
 
 Analiza potwierdza, że model matematyczny poprawnie implementuje profil "High Volatility", oferując rzadkie, ale znaczące wygrane kosztem krótszego średniego czasu rozgrywki dla większości użytkowników.
+
+## Rozkład wygranych 
+
+Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmicznej. Skala ta została zastosowana, aby uwidocznić rzadkie zdarzenia o wysokiej wartości, które przy skali liniowej byłyby niemożliwe do zaobserwowania obok dominujących małych wypłat.
+
+![Win Distribution](win_distribution.png)
+
+**Wnioski z analizy rozkładu:**
+* **Bimodalny charakter:** Wyraźna przerwa w rozkładzie (tzw. gap) między mnożnikami średnimi a maksymalnymi potwierdza profil gry typu **High Volatility**.
+* **Koncentracja wypłat:** Większość zwycięskich spinów (Hit Frequency = 32.73%) dostarcza wypłaty w przedziale 1x-20x stawki, co zapewnia częstą interakcję, podczas gdy potencjał wygranej (Max Win) jest skoncentrowany w rzadkim zdarzeniu o mnożniku 500x.
+* **Wpływ na Volatility Index:** To właśnie ta dysproporcja między częstymi małymi wygranymi a rzadką wygraną 500x generuje wysoki współczynnik zmienności (VI ≈ 29.05).
 
 ## Technologia
 - **Python 3.x**
