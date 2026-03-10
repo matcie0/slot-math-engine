@@ -53,6 +53,21 @@ def analyze_player_sessions(wins_per_spin, initial_balance=100, bet_size=1, sess
     
     return ruin_probability
 
+def plot_win_distribution(wins_per_spin):
+    # Filtrujemy tylko wygrane większe od 0
+    winning_payouts = wins_per_spin[wins_per_spin > 0]
+    
+    plt.figure(figsize=(10, 6))
+    plt.hist(winning_payouts, bins=50, color='skyblue', edgecolor='black', log=True)
+    
+    plt.title('Rozkład wielkości wygranych (Skala logarytmiczna)')
+    plt.xlabel('Mnożnik wygranej (x Bet)')
+    plt.ylabel('Częstotliwość występowania (Log)')
+    plt.grid(axis='y', alpha=0.3)
+    
+    plt.savefig('win_distribution.png')
+    print("\nWykres: 'win_distribution.png' został wygenerowany.")
+
 if __name__ == "__main__":
 
     from numpy_simulation import run_numpy_simulation
@@ -60,3 +75,4 @@ if __name__ == "__main__":
     all_wins = run_numpy_simulation(10000000) # Na potrzeby testu 10 mln wystarczy
     
     analyze_player_sessions(all_wins, initial_balance=100, bet_size=1, sessions=1000, max_spins=500)
+    plot_win_distribution(all_wins)
