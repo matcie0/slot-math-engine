@@ -58,6 +58,7 @@ def run_numpy_simulation(spins=1000000):
         print(f" - {sym}: {count}")
     print(f"Standard Deviation: {stdev:.4f}")
     print(f"Volatility Index (95% CI): {volatility_index:.2f}")
+    return wins_per_spin
 
 
     # # === WIZUALIZACJA ===
@@ -80,4 +81,4 @@ def run_numpy_simulation(spins=1000000):
     # print("Wykres został zapisany jako 'rtp_convergence.png'")
 
 if __name__ == "__main__":
-    run_numpy_simulation(1000000)
+    run_numpy_simulation(100000000)
