@@ -33,12 +33,12 @@ W celu oceny gry z perspektywy użytkownika, przeprowadzono analizę sesji metod
 - **Limit spinów w sesji:** 500
 - **Balans początkowy:** 100 jednostek
 - **Stawka (Bet):** 1 jednostka
-- **Profil matematyczny:** Wysoka zmienność (VI ≈ 29.05)
+- **Profil matematyczny:** Wysoka zmienność (VI ≈ 28.97)
 
 #### Kluczowe wnioski:
-- **Prawdopodobieństwo bankructwa:** 82,90% – taki odsetek graczy traci cały budżet przed wykonaniem 500 spinów.
-- **Średnia długość sesji:** 259,4 spinów.
-- **Mediana długości sesji:** 213 spinów. 
+- **Prawdopodobieństwo bankructwa:** 82,80% – taki odsetek graczy traci cały budżet przed wykonaniem 500 spinów.
+- **Średnia długość sesji:** 265,3 spinów.
+- **Mediana długości sesji:** 219,5 spinów. 
 - **Interpretacja:** Różnica między medianą a średnią wskazuje na silną asymetrię rozkładu. Większość graczy kończy sesję stosunkowo szybko, natomiast średnia jest zawyżana przez nieliczne sesje o wyjątkowo długim czasie trwania, wynikającym z trafienia wysokich wygranych.
 
 #### Wizualizacja wahań kapitału (Balance Swings):
@@ -60,8 +60,8 @@ Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmic
 
 **Wnioski z analizy rozkładu:**
 * **Bimodalny charakter:** Wyraźna przerwa w rozkładzie (tzw. gap) między mnożnikami średnimi a maksymalnymi potwierdza profil gry typu **High Volatility**.
-* **Koncentracja wypłat:** Większość zwycięskich spinów (Hit Frequency = 32.73%) dostarcza wypłaty w przedziale 1x-20x stawki, co zapewnia częstą interakcję, podczas gdy potencjał wygranej (Max Win) jest skoncentrowany w rzadkim zdarzeniu o mnożniku 500x.
-* **Wpływ na Volatility Index:** To właśnie ta dysproporcja między częstymi małymi wygranymi a rzadką wygraną 500x generuje wysoki współczynnik zmienności (VI ≈ 29.05).
+* **Koncentracja wypłat:** Większość zwycięskich spinów (Hit Frequency = 32.75%) dostarcza wypłaty w przedziale 1x-20x stawki, co zapewnia częstą interakcję, podczas gdy potencjał wygranej (Max Win) jest skoncentrowany w rzadkim zdarzeniu o mnożniku 500x.
+* **Wpływ na Volatility Index:** To właśnie ta dysproporcja między częstymi małymi wygranymi a rzadką wygraną 500x generuje wysoki współczynnik zmienności (VI ≈ 28.97).
 
 ## Technologia
 - **Python 3.x**
