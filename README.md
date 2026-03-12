@@ -72,6 +72,7 @@ Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmic
 - `numpy_simulation.py` - Główny silnik symulacji i moduł wizualizacji.
 - `settings.py` - Definicja bębnów (Reel Strips), linii płatnych (Paylines) oraz tabeli wypłat (Paytable).
 - `rtp_convergence.png` - Wygenerowany wykres stabilności statystycznej.
+- `player_session.py` - Symulacje sesji, analiza prawdopodobieństwa bankructwa i wizualizacja rozkładu wygranych.
 
 ## Jak uruchomić
 1. Sklonuj repozytorium:
