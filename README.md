@@ -24,7 +24,7 @@ Wykres poniżej udowadnia stabilność modelu matematycznego. Wraz ze wzrostem l
 
 ![RTP Convergence](rtp_convergence.png)
 
-### Symulacja sesji gracza (Analiza Monte Carlo)
+## Symulacja sesji gracza (Analiza Monte Carlo)
 
 W celu oceny gry z perspektywy użytkownika, przeprowadzono analizę sesji metodą Monte Carlo. Podczas gdy teoretyczne wskaźniki RTP i Volatility Index opisują zachowanie automatu w nieskończonym horyzoncie czasowym, analiza sesji pozwala zrozumieć realne ryzyko utraty kapitału (prawdopodobieństwo bankructwa).
 
@@ -33,12 +33,12 @@ W celu oceny gry z perspektywy użytkownika, przeprowadzono analizę sesji metod
 - **Limit spinów w sesji:** 500
 - **Balans początkowy:** 100 jednostek
 - **Stawka (Bet):** 1 jednostka
-- **Profil matematyczny:** Wysoka zmienność (VI ≈ 29.05)
+- **Profil matematyczny:** Wysoka zmienność (VI ≈ 28.97)
 
 #### Kluczowe wnioski:
-- **Prawdopodobieństwo bankructwa:** 82,90% – taki odsetek graczy traci cały budżet przed wykonaniem 500 spinów.
-- **Średnia długość sesji:** 259,4 spinów.
-- **Mediana długości sesji:** 213 spinów. 
+- **Prawdopodobieństwo bankructwa:** 82,80% – taki odsetek graczy traci cały budżet przed wykonaniem 500 spinów.
+- **Średnia długość sesji:** 265,3 spinów.
+- **Mediana długości sesji:** 219,5 spinów. 
 - **Interpretacja:** Różnica między medianą a średnią wskazuje na silną asymetrię rozkładu. Większość graczy kończy sesję stosunkowo szybko, natomiast średnia jest zawyżana przez nieliczne sesje o wyjątkowo długim czasie trwania, wynikającym z trafienia wysokich wygranych.
 
 #### Wizualizacja wahań kapitału (Balance Swings):
@@ -52,6 +52,17 @@ Powyższy wykres prezentuje 50 reprezentatywnych sesji:
 
 Analiza potwierdza, że model matematyczny poprawnie implementuje profil "High Volatility", oferując rzadkie, ale znaczące wygrane kosztem krótszego średniego czasu rozgrywki dla większości użytkowników.
 
+## Rozkład wygranych 
+
+Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmicznej. Skala ta została zastosowana, aby uwidocznić rzadkie zdarzenia o wysokiej wartości, które przy skali liniowej byłyby niemożliwe do zaobserwowania obok dominujących małych wypłat.
+
+![Win Distribution](win_distribution.png)
+
+**Wnioski z analizy rozkładu:**
+* **Bimodalny charakter:** Wyraźna przerwa w rozkładzie (tzw. gap) między mnożnikami średnimi a maksymalnymi potwierdza profil gry typu **High Volatility**.
+* **Koncentracja wypłat:** Większość zwycięskich spinów (Hit Frequency = 32.75%) dostarcza wypłaty w przedziale 1x-20x stawki, co zapewnia częstą interakcję, podczas gdy potencjał wygranej (Max Win) jest skoncentrowany w rzadkim zdarzeniu o mnożniku 500x.
+* **Wpływ na Volatility Index:** To właśnie ta dysproporcja między częstymi małymi wygranymi a rzadką wygraną 500x generuje wysoki współczynnik zmienności (VI ≈ 28.97).
+
 ## Technologia
 - **Python 3.x**
 - **NumPy** - macierzowe operacje na danych
@@ -61,6 +72,7 @@ Analiza potwierdza, że model matematyczny poprawnie implementuje profil "High V
 - `numpy_simulation.py` - Główny silnik symulacji i moduł wizualizacji.
 - `settings.py` - Definicja bębnów (Reel Strips), linii płatnych (Paylines) oraz tabeli wypłat (Paytable).
 - `rtp_convergence.png` - Wygenerowany wykres stabilności statystycznej.
+- `player_session.py` - Symulacje sesji, analiza prawdopodobieństwa bankructwa i wizualizacja rozkładu wygranych.
 
 ## Jak uruchomić
 1. Sklonuj repozytorium:
