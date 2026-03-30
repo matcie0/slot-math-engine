@@ -39,7 +39,6 @@ class SlotEngine:
             is_winner = all(s == target or s == "W" for s in symbols)
             
             if is_winner:
-                # Jeśli wygrały same Wildy, wypłać za najwyższy symbol (np. H1)
                 payout_key = "W" if target == "W" else target
                 total_payout += SYMBOLS[payout_key]["value"]
                 
