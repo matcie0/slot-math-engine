@@ -63,6 +63,28 @@ Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmic
 * **Koncentracja wypłat:** Większość zwycięskich spinów (Hit Frequency = 32.75%) dostarcza wypłaty w przedziale 1x-20x stawki, co zapewnia częstą interakcję, podczas gdy potencjał wygranej (Max Win) jest skoncentrowany w rzadkim zdarzeniu o mnożniku 500x.
 * **Wpływ na Volatility Index:** To właśnie ta dysproporcja między częstymi małymi wygranymi a rzadką wygraną 500x generuje wysoki współczynnik zmienności (VI ≈ 28.97).
 
+
+## Mapa cieplna prawdopodobieństwa przetrwania
+
+W celu pełnej charakterystyki modelu, wdrożono analizę przetrwania opartą na 10 000 niezależnych sesji
+dla różnych kapitałów początkowych.
+Pozwala to na precyzyjne określenie ryzyka bankructwa w zależności od czasu trwania sesji oraz dostępnego budżetu.
+
+![Survival Heatmap](survival_heatmap.png)
+
+#### Kluczowe aspekty analizy:
+- **Oś Y (Początkowy Balans):** Reprezentuje liczbę jednostek, z którymi gracz rozpoczyna sesję.
+- **Oś X (Liczba spinów):** Czas trwania sesji mierzony liczbą rozgrywek.
+- **Skala kolorystyczna:** Prawdopodobieństwo (%), że gracz **nie zbankrutuje** w danym punkcie czasu.
+
+#### Wnioski:
+- **Deterministyczna strefa bezpieczeństwa:** Przy balansie 100 jednostek gracz posiada matematyczną gwarancję przetrwania pierwszych 100 spinów. Wynika to z faktu, że przy stawce 1 unit/spin bankructwo przed setnym rozegraniem jest niemożliwe nawet przy skrajnie niekorzystnym przebiegu sesji.
+- **Efekt "Ściany":** Gwałtowny spadek szansy na przetrwanie dla balansu 100 następuje między 100. a 200. spinem (spadek z **89%** do **38%**). Obrazuje to agresywny charakter drenażu kapitału – model dokonuje błyskawicznej selekcji graczy, eliminując tych, którzy w początkowej fazie nie trafili wysokopłatnej kombinacji.
+- **Agresywność modelu:** Przy niskim kapitale (poniżej 50 jednostek) szansa na przetrwanie 150 spinów wynosi tylko ok. **15%**, co potwierdza ekstremalnie wysoką zmienność silnika.
+- **Stabilizacja sesji:** Interesującym zjawiskiem jest stabilizacja prawdopodobieństwa przetrwania powyżej 600. spinu (np. utrzymanie poziomu ok. 30-32% dla balansu 200). Sugeruje to, że gracze, którzy przetrwali fazę początkową, trafili wygrane o wysokim mnożniku, co statystycznie "ubezpieczyło" ich portfel na resztę symulacji.
+- **Liniowa skalowalność ryzyka (Long-term):** Analiza końcowej fazy sesji (1000 spinów) wykazuje niemal idealnie liniową korelację między kapitałem startowym a szansą na przetrwanie (wzrost szans o ok. 2x przy każdorazowym podwojeniu budżetu). Świadczy to o stabilnej zmienności modelu.
+
+
 ## Technologia
 - **Python 3.x**
 - **NumPy** - macierzowe operacje na danych
@@ -71,7 +93,6 @@ Poniższy histogram przedstawia rozkład wielkości wygranych w skali logarytmic
 ## Struktura Projektu
 - `numpy_simulation.py` - Główny silnik symulacji i moduł wizualizacji.
 - `settings.py` - Definicja bębnów (Reel Strips), linii płatnych (Paylines) oraz tabeli wypłat (Paytable).
-- `rtp_convergence.png` - Wygenerowany wykres stabilności statystycznej.
 - `player_session.py` - Symulacje sesji, analiza prawdopodobieństwa bankructwa i wizualizacja rozkładu wygranych.
 
 ## Jak uruchomić

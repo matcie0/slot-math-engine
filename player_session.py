@@ -94,22 +94,34 @@ def plot_survival_heatmap(wins_per_spin, sessions=10000):
             heatmap_data[i, j] = np.mean(survival_times >= limit) * 100
 
 
+
+
     plt.figure(figsize=(12, 8))
+    # Ustawiamy start od 0, żeby lewa krawędź była jasna
     im = plt.imshow(heatmap_data, origin='lower', aspect='auto', cmap='YlGn', 
-                    extent=[spin_steps[0], spin_steps[-1], balance_steps[0], balance_steps[-1]])
+                    extent=[0, max_spins, balance_steps[0], balance_steps[-1]])
     
+    # Obliczamy szerokość jednego kafelka (np. 50)
+    bin_width = spin_steps[1] - spin_steps[0]
+
+    # Poprawiona pętla dodająca tekst
+    for i in range(len(balance_steps)):
+        for j in range(len(spin_steps)): 
+            # Stawiamy tekst na ŚRODKU kafelka (wartość minus połowa szerokości)
+            plt.text(spin_steps[j] - (bin_width / 2), balance_steps[i], 
+                     f'{heatmap_data[i,j]:.0f}', 
+                     ha="center", va="center", color="black", fontsize=8, alpha=0.6)
+
+    # Ustawienia osi
+    step = 100
+    ticks = np.arange(0, max_spins + 1, step)
+    plt.xticks(ticks)
+    
+    # Reszta Twojego kodu...
     plt.colorbar(im, label='Prawdopodobieństwo przetrwania (%)')
-    
     plt.title('Mapa Przetrwania Gracza (Survival Probability)', fontsize=16, fontweight='bold', pad=20)
     plt.xlabel('Liczba wykonanych spinów', fontsize=12)
     plt.ylabel('Początkowy Balans (jednostki)', fontsize=12)
-    
-    # Dodanie etykiet tekstowych na heatmapie
-    for i in range(len(balance_steps)):
-        for j in range(0, len(spin_steps), 2): 
-            plt.text(spin_steps[j], balance_steps[i], f'{heatmap_data[i,j]:.0f}', 
-                     ha="center", va="center", color="black", fontsize=8, alpha=0.6)
-
     plt.tight_layout()
     plt.savefig('survival_heatmap.png')
     print("\nWykres 'survival_heatmap.png' został wygenerowany.")
